@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+
+<head>
+     <meta charset="utf-8">
+     <title> Purchase Report</title>
+     <style type="text/css">
+          @page {
+               size: A4;
+               margin: 1cm;
+          }
+
+          .table {
+               width: 100%;
+               max-width: 100%;
+               margin-bottom: 5px;
+               background-color: #fff;
+               border: 1px solid #cfcfcf;
+          }
+
+          .table th,
+          .table td {
+               padding: 5px;
+               vertical-align: top;
+               text-align: center;
+          }
+
+          .table td {
+               border-bottom: 1px solid #000;
+          }
+
+          .table thead th {
+               vertical-align: bottom;
+               border-bottom: 2px solid #000;
+               border-top: 2px solid #000;
+          }
+
+          .table tbody+tbody {
+               border-top: 2px solid #000;
+          }
+
+          .table .table {
+               background-color: #fff;
+          }
+
+          .list-group {
+               display: block;
+               width: 100%;
+               list-style: none;
+               margin-top: 15px;
+               margin-bottom: 15px;
+          }
+
+          .list-group p {
+               width: 100%;
+               height: 20px;
+               line-height: 20px;
+               list-style: none;
+               font-size: 1.1em;
+          }
+
+          .card-header {
+               text-align: center;
+          }
+     </style>
+</head>
+
+
+<body>
+
+     <div class="container">
+          <div class="card">
+               <div class="card-header">
+                    <h1>Stock Report</h1>
+                    <h2>Date : {{start_date}} TO {{end_date}}</h2>
+               </div>
+
+               <div class="list-group">
+                    <p>Company: {{company}}</p>
+                    <p>Branch Name: {{branch}}</p>
+                    
+               </div>
+
+               <table class="table">
+                    <thead>
+                         <tr>
+                              <th>Item</th>
+                              <th>stock Created Date</th>
+                              <th>UOM</th>
+                              <th>Unit Price</th>
+                              <th>Opening Stock</th>
+                              <th>Received Stock</th>
+                              <th>Sale</th>
+                              <th>Discrepancy Stock</th>
+                              <th>Final Closing Stock</th>
+                              <th>Total Amount</th>
+                         </tr>
+                    </thead>
+                    <tbody>
+                         {% for s in stock %}
+                         <tr>
+                              <td>{{ s.item }}</td>
+                              <td>{{ s.created_at }}</td>
+                              <td>{{ s.uom }}</td>
+                              <td>{{ s.unit_price }}</td>
+                              <td>{{ s.opening_stock }}</td>
+                              <td>{{ s.received_stock }}</td>
+                              <td>{{ s.sale }}</td>
+                              <td>{{ s.discrepancy_stock }}</td>
+                              <td>{{ s.final_closing_stock }}</td>
+                              <td>{{ s.total_amount }}</td>
+                         </tr>
+                         {% endfor %}
+                         <tr>
+                              <td  colspan="6">Total Sale</td>
+                              <td>{{total_sale}}</td>
+                         </tr>
+                         <tr>
+                              <td  colspan="7">Total Discrepancy</td>
+                              <td>{{total_discrepancy}}</td>
+                         </tr>
+                         <tr>
+                              <td  colspan="9">Final Amount</td>
+                              <td>{{total_amount}}</td>
+                         </tr>
+                    </tbody>
+               </table>
+               <p> Total Amount In Words :  <span style="color:blue">{{ total_amount_in_words }} only</span></p>
+          </div>
+     </div>
+
+</body>
+
+</html>

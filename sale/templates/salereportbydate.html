@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+
+<head>
+     <meta charset="utf-8">
+     <title> Purchase Report</title>
+     <style type="text/css">
+          @page {
+               size: A4;
+               margin: 1cm;
+          }
+
+          .table {
+               width: 100%;
+               max-width: 100%;
+               margin-bottom: 5px;
+               background-color: #fff;
+               border: 1px solid #cfcfcf;
+          }
+
+          .table th,
+          .table td {
+               padding: 5px;
+               vertical-align: top;
+               text-align: center;
+          }
+
+          .table td {
+               border-bottom: 1px solid #000;
+          }
+
+          .table thead th {
+               vertical-align: bottom;
+               border-bottom: 2px solid #000;
+               border-top: 2px solid #000;
+          }
+
+          .table tbody+tbody {
+               border-top: 2px solid #000;
+          }
+
+          .table .table {
+               background-color: #fff;
+          }
+
+          .list-group {
+               display: block;
+               width: 100%;
+               list-style: none;
+               margin-top: 15px;
+               margin-bottom: 15px;
+          }
+
+          .list-group p {
+               width: 100%;
+               height: 20px;
+               line-height: 20px;
+               list-style: none;
+               font-size: 1.1em;
+          }
+
+          .card-header {
+               text-align: center;
+          }
+     </style>
+</head>
+
+<body>
+
+     <div class="container">
+          <div class="card">
+               <div class="card-header">
+                    <h1>Sale Report </h1>
+                    {% if date %}
+                         <h2>Date: {{date}} </h2>
+                    {% endif %}
+                    {% if start_date %}
+                         <h2>Date : {{start_date}} TO {{end_date}}</h2>
+                    {% endif %}
+               </div>
+               <table class="table">
+                    <thead>
+                         <tr>
+                              <th> Invoice Number</th>
+                              <th>Invoice Date</th>
+                              <th>Payment Method</th>
+                              <th>Sale Amount</th>
+                         </tr>
+                    </thead>
+                    <tbody>
+                         {% for i in invoices %}
+                         <tr>
+                              <td>{{ i.id }}</td>
+                              <td>{{ i.bill_date }}</td>
+                              <td>{{ i.payment_mode }}</td>
+                              <td>{{ i.final_bill_amount }}</td>
+                         </tr>
+                         {% endfor %}
+                         <tr>
+                              <td  colspan="3">Total Sale</td>
+                              <td colspan="1">{{final_amount}}</td>
+                         </tr>
+                    </tbody>
+               </table>
+          </div>
+     </div>
+
+</body>
+
+</html>

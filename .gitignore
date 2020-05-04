@@ -1,0 +1,11 @@
+*.idea
+#**/migrations
+*.pyc
+/media
+.idea
+env
+.vscode
+/infiniaPOS/settings.py
+settings
+personal.txt
+infiniaPOS.settings

@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+
+<head>
+     <meta charset="utf-8">
+     <title> Bill Of Stock Report</title>
+     <style type="text/css">
+          @page {
+               size: A4;
+               margin: 1cm;
+          }
+
+          .table {
+               width: 100%;
+               max-width: 100%;
+               margin-bottom: 5px;
+               background-color: #fff;
+               border: 1px solid #cfcfcf;
+          }
+
+          .table th,
+          .table td {
+               padding: 5px;
+               vertical-align: top;
+               text-align: center;
+          }
+
+          .table td {
+               border-bottom: 1px solid #000;
+          }
+
+          .table thead th {
+               vertical-align: bottom;
+               border-bottom: 2px solid #000;
+               border-top: 2px solid #000;
+          }
+
+          .table tbody+tbody {
+               border-top: 2px solid #000;
+          }
+
+          .table .table {
+               background-color: #fff;
+          }
+
+          .list-group {
+               display: block;
+               width: 100%;
+               list-style: none;
+               margin-top: 15px;
+               margin-bottom: 15px;
+          }
+
+          .list-group p {
+               width: 100%;
+               height: 20px;
+               line-height: 20px;
+               list-style: none;
+               font-size: 1.1em;
+          }
+
+          .card-header {
+               text-align: center;
+          }
+     </style>
+</head>
+
+<body>
+
+     <div class="container">
+          <div class="card">
+               <div class="card-header">
+                    <h1>Bill Of Stock Report</h1>
+                    <h2>All Reports till now</h2>
+               </div>
+
+               <div class="list-group">
+                    <p>Vendor Id:{{vendor.id}}</p>
+                    <p>Name: {{vendor.vendor_name}}</p>
+                    <p>Company: {{company}}</p>
+                    <p>Branch: {{branch}}</p>
+               </div>
+
+               <table class="table">
+                    <thead>
+                         <tr>
+                              <th>Invoice No</th>
+                              <th>Bill Of Stock Created Date</th>
+                              <th>Vendor</th>
+                              <th>Purchase Order Number</th>
+                              <th>Payment Mode</th>
+                              <th>Final Amount</th>
+                         </tr>
+                    </thead>
+                    <tbody>
+                         {% for b in bill_of_stock %}
+                         <tr>
+                              <td>{{ b.invoice_number }}</td>
+                              <td>{{ b.created_at }}</td>
+                              <td>{{ b.vendor.vendor_name }}</td>
+                              <td>{{ b.purchase_order }}</td>
+                              <td>{{ b.payment_mode }}</td>
+                              <td>{{ b.final_amount }}</td>
+                         </tr>
+                         {% endfor %}
+                         <tr>
+                              <td  colspan="5">Final Amount</td>
+                              <td>{{final_amount}}</td>
+                         </tr>
+                    </tbody>
+               </table>
+               <p> Total Amount In Words :  <span style="color:blue">{{ total_amount_in_words }} only</span></p>
+          </div>
+     </div>
+
+</body>
+
+</html>
